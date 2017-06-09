@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -254,7 +254,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/07/article-title/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/30/PM2体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="永泉。">
@@ -273,7 +273,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/07/article-title/" itemprop="url">article title</a></h1>
+                <a class="post-title-link" href="/2016/05/30/PM2体验/" itemprop="url">PM2体验</a></h1>
         
 
         <div class="post-meta">
@@ -283,10 +283,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-07T17:59:55+08:00">
-                2017-06-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-30T11:31:41+08:00">
+                2016-05-30
               </time>
             
 
@@ -322,7 +322,32 @@
       
         
           
-            <h2 id="test-重新部署hexo博客😝-记得把源码放在github上-哈哈"><a href="#test-重新部署hexo博客😝-记得把源码放在github上-哈哈" class="headerlink" title="test  重新部署hexo博客😝   记得把源码放在github上 哈哈"></a>test  重新部署hexo博客😝   记得把源码放在github上 哈哈</h2><p>#aaa #bbb</p>
+            <p>前段时间折腾了一下Amazon EC2 的免费服务,然后想着顺便把之前的node联系项目部署上去,我是通过ssh连接服务去启动我的服务，可是当我断开ssh连接的时候服务就关掉了，郁闷。<br>后台经老大介绍 pm2 这个工具，顺便也体验了下pm2 cluster….</p>
+<h3 id="PM2介绍"><a href="#PM2介绍" class="headerlink" title="PM2介绍"></a>PM2介绍</h3><p>pm2 是一个带有负载均衡功能的node应用的进程管理器。当你要把你的独立代码利用全部的服务器上所有cpu，并保证进程永远活在，0秒加载，pm2是完美的。</p>
+<h4 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性:"></a>主要特性:</h4><ul>
+<li>内建负载均衡(使用Node cluster 集群模块)</li>
+<li>后台运行</li>
+<li>0秒停机重载 ps：我理解的意思是维护升级的时候不需要停机</li>
+<li>具有Ubuntu和CentOS 的启动脚本</li>
+<li>停止不稳定的进程（避免无限循环）</li>
+<li>控制台检测</li>
+<li>提供 HTTP API</li>
+<li>远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 )</li>
+</ul>
+<h3 id="PM2安装"><a href="#PM2安装" class="headerlink" title="PM2安装"></a>PM2安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g pm2</div></pre></td></tr></table></figure>
+<h3 id="PM2的使用"><a href="#PM2的使用" class="headerlink" title="PM2的使用"></a>PM2的使用</h3><ul>
+<li>pm2 start app.js -i 4 #后台运行pm2，启动4个app.js的进程（具体的进程会依赖于cpu的核心数目，也可以传’max’或者 ‘0’参数，系统会根据cpu的核数来启动最多的进程）</li>
+<li>pm2 start app.js –name appname #命名进程</li>
+<li>pm2 list #显示所有进程状态</li>
+<li>pm2 monit #监视所有进程</li>
+<li>pm2 logs #显示所有进程日志</li>
+<li>pm2 stop all #停止所有进程</li>
+<li>pm2 stop id/name #停止某个进程</li>
+<li>pm2 restart all #重启所有进程</li>
+<li>pm2 delete id/name #杀死特定的进程</li>
+<li>pm2 delete all #杀死全部进程</li>
+</ul>
+<p>更多更详细的内容请到官网 <a href="http://pm2.keymetrics.io/docs/usage/quick-start/" target="_blank" rel="external">PM2</a></p>
 
           
         
@@ -366,7 +391,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/18/article-title/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="永泉。">
@@ -385,7 +410,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/07/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2016/05/18/article-title/" itemprop="url">my first bog</a></h1>
         
 
         <div class="post-meta">
@@ -395,10 +420,130 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-07T17:12:06+08:00">
-                2017-06-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-18T17:59:55+08:00">
+                2016-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="搭建hexo遇到的一些坑"><a href="#搭建hexo遇到的一些坑" class="headerlink" title="搭建hexo遇到的一些坑"></a>搭建hexo遇到的一些坑</h2><p>   我的第一篇blog,只想写下搭建hexo博客遇到的一些坑<br>总的来说，搭建一个hexo博客对程序员来说是一件不难的事情，特别是有git和github经验的。但有些地方有疏忽的话也很容易出问题。一下是我搭建过程中遇到的几个坑：</p>
+<ul>
+<li><p>配置文件(_config.yml)的格式问题<br>  与常用的json格式不一样，这里的配置文件在冒号后面需要空一个格！！</p>
+</li>
+<li><p>repository的命名格式问题<br>  repository的名字必须是username.github.io,其中username就是必须是你的github的用户名,其它的不行。关于github pages 的更多内容可用看这里 <a href="https://pages.github.com/" target="_blank" rel="external">github pages</a></p>
+</li>
+</ul>
+<hr>
+<p>嗯…第一次用md,还不是很熟练，就不引入截图了….哈哈哈（我讲的这些貌似很难看的明白啊）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/17/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永泉。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/05/17/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-17T16:19:55+08:00">
+                2016-05-17
               </time>
             
 
@@ -522,8 +667,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -535,8 +680,8 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -586,7 +731,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
