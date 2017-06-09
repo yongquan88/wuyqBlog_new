@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -254,6 +254,122 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/02/js获取url的参数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永泉。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/02/js获取url的参数/" itemprop="url">js获取url的参数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-02T16:01:50+08:00">
+                2016-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在开发中经常会遇到从url中获取参数的需求，解决的方法可以有很种，有些框架中已经封装了对应的方法给我们直接用就可以，比如angularjs中$location模块的search()方法就直接返回url中包含参数的对象，方便好用！</p>
+<p>可是如果直接用原生js去获取呢？曾经我的做法是从url中找到第一个’?’后面的那部分，然后在切割组成json对象，但总感觉这种方法不够好，就是无法保证第一个’？’后面的那些就是我想要的参数字符串。</p>
+<p>知道今天才发现a标签中有个属性search就给我们提高了参数部分的字符串了</p>
+<h4 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var arr=urlParse(<span class="string">'www.baidu.com?a=1&amp;b=2'</span>);</div><div class="line">console.log(arr);//&#123;<span class="string">"a"</span>:1,<span class="string">"b"</span>:2&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> urlParse(url)&#123;</div><div class="line">    var query=&#123;&#125;;</div><div class="line">    var oA=document.createElement(<span class="string">'a'</span>);</div><div class="line">    oA.href=url;</div><div class="line">    var arrParms=oA.search.slice(1).split(<span class="string">'&amp;'</span>);</div><div class="line">    <span class="keyword">for</span>(var i=0;i&lt;arrParms.length;i++)&#123;</div><div class="line">        var temArr=arrParms[i].split(<span class="string">'='</span>);</div><div class="line">        query[decodeURIComponent(temArr[0])]=(decodeURIComponent(temArr[1]) || <span class="string">''</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> query;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="关键的地方"><a href="#关键的地方" class="headerlink" title="关键的地方"></a>关键的地方</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arrParms=oA.search.slice(1).split(<span class="string">'&amp;'</span>);</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/30/PM2体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,7 +399,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-30T11:31:41+08:00">
                 2016-05-30
@@ -420,7 +536,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-18T17:59:55+08:00">
                 2016-05-18
@@ -540,7 +656,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-17T16:19:55+08:00">
                 2016-05-17
@@ -667,8 +783,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">articles</span>
               </a>
             </div>
           
@@ -680,7 +796,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -735,7 +851,7 @@
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>
