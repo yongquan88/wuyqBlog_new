@@ -16,6 +16,15 @@ tags: git
     //查看远程分支
     git branch -r
 ```
+### 根据tag来检出分支
+``` bash
+	//1. 获得最新代码
+	git pull
+	//根据tag创建新的分支
+	git branch new_branchname tag-name
+
+	例如:git branch newbranch v1.0 . 会以tag v1.0创建新的分支newbranch
+```
 
 ### 删除分支
 ```

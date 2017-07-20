@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 删除分支1234//删除本地分支（-D 强制删除）git branch -D branchname//删除远程分支git push origin :branch">
+<meta name="description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 常用命令">
 <meta property="og:url" content="http://yoursite.com/2017/07/12/git-常用命令/index.html">
 <meta property="og:site_name" content="永泉。">
-<meta property="og:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 删除分支1234//删除本地分支（-D 强制删除）git branch -D branchname//删除远程分支git push origin :branch">
-<meta property="og:updated_time" content="2017-07-12T09:04:57.000Z">
+<meta property="og:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
+<meta property="og:updated_time" content="2017-07-20T13:03:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 常用命令">
-<meta name="twitter:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 删除分支1234//删除本地分支（-D 强制删除）git branch -D branchname//删除远程分支git push origin :branch">
+<meta name="twitter:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
 
 
 
@@ -323,6 +323,7 @@
       
         <p>记录一下常用的git命令</p>
 <h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//创建并切换到新分支</div><div class="line">git checkout -b branchname</div><div class="line">//把本地分支推送到远程</div><div class="line">git push origin branchname</div><div class="line">//查看远程分支</div><div class="line">git branch -r</div></pre></td></tr></table></figure>
+<h3 id="根据tag来检出分支"><a href="#根据tag来检出分支" class="headerlink" title="根据tag来检出分支"></a>根据tag来检出分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//1. 获得最新代码</div><div class="line">git pull</div><div class="line">//根据tag创建新的分支</div><div class="line">git branch new_branchname tag-name</div><div class="line"></div><div class="line">例如:git branch newbranch v1.0 . 会以tag v1.0创建新的分支newbranch</div></pre></td></tr></table></figure>
 <h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//删除本地分支（-D 强制删除）</div><div class="line">git branch -D branchname</div><div class="line">//删除远程分支</div><div class="line">git push origin :branchname</div></pre></td></tr></table></figure>
 <h3 id="打tag"><a href="#打tag" class="headerlink" title="打tag"></a>打tag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//本地打tag</div><div class="line">git tag -a v1.1 -m &quot;注释&quot;</div><div class="line">//把tag推到远程</div><div class="line">git push origin v1.1</div><div class="line">//查看所有tag</div><div class="line">git tag -l</div></pre></td></tr></table></figure>
 <h3 id="删除远程tag"><a href="#删除远程tag" class="headerlink" title="删除远程tag"></a>删除远程tag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//删除本地tag</div><div class="line">git tag -d v1.1</div><div class="line">//删除远程tag</div><div class="line">git push origin :v1.1</div><div class="line">//也可以这样</div><div class="line">git push origin --delete tag v1.1</div></pre></td></tr></table></figure>
@@ -379,6 +380,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/13/package-json表里版本号前面的-与-的区别/" rel="prev" title="package.json表里版本号前面的 ^ 与 ~ 的区别">
+                package.json表里版本号前面的 ^ 与 ~ 的区别 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -450,7 +455,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -463,7 +468,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -498,7 +503,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支"><span class="nav-number">1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除分支"><span class="nav-number">2.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打tag"><span class="nav-number">3.</span> <span class="nav-text">打tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程tag"><span class="nav-number">4.</span> <span class="nav-text">删除远程tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程代码库回滚"><span class="nav-number">5.</span> <span class="nav-text">远程代码库回滚</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支"><span class="nav-number">1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据tag来检出分支"><span class="nav-number">2.</span> <span class="nav-text">根据tag来检出分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除分支"><span class="nav-number">3.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打tag"><span class="nav-number">4.</span> <span class="nav-text">打tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程tag"><span class="nav-number">5.</span> <span class="nav-text">删除远程tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程代码库回滚"><span class="nav-number">6.</span> <span class="nav-text">远程代码库回滚</span></a></li></ol></div>
             
 
           </div>
