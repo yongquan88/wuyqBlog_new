@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="react react-router," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
-<meta name="keywords" content="git">
+<meta name="description" content="在react开发中，常用的3种方式： 第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面) 123456import &amp;#123;Link&amp;#125; from &apos;react-router&apos;;//for exa">
+<meta name="keywords" content="react react-router">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 常用命令">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/git-常用命令/index.html">
+<meta property="og:title" content="在react中路由跳转的几种方式">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/在react中路由跳转的几种方式/index.html">
 <meta property="og:site_name" content="一些坑,一些收获。">
-<meta property="og:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
-<meta property="og:updated_time" content="2017-07-20T13:03:13.000Z">
+<meta property="og:description" content="在react开发中，常用的3种方式： 第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面) 123456import &amp;#123;Link&amp;#125; from &apos;react-router&apos;;//for exa">
+<meta property="og:updated_time" content="2017-08-10T12:32:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 常用命令">
-<meta name="twitter:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
+<meta name="twitter:title" content="在react中路由跳转的几种方式">
+<meta name="twitter:description" content="在react开发中，常用的3种方式： 第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面) 123456import &amp;#123;Link&amp;#125; from &apos;react-router&apos;;//for exa">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/12/git-常用命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/在react中路由跳转的几种方式/"/>
 
 
 
 
 
-  <title>git 常用命令 | 一些坑,一些收获。</title>
+  <title>在react中路由跳转的几种方式 | 一些坑,一些收获。</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -257,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/12/git-常用命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/在react中路由跳转的几种方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="永泉。">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git 常用命令</h1>
+          <h1 class="post-title" itemprop="name headline">在react中路由跳转的几种方式</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-12T16:43:50+08:00">
-                2017-07-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T20:04:28+08:00">
+                2017-08-10
               </time>
             
 
@@ -321,14 +321,11 @@
       
 
       
-        <p>记录一下常用的git命令</p>
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//创建并切换到新分支</div><div class="line">git checkout -b branchname</div><div class="line">//把本地分支推送到远程</div><div class="line">git push origin branchname</div><div class="line">//查看远程分支</div><div class="line">git branch -r</div></pre></td></tr></table></figure>
-<h3 id="根据tag来检出分支"><a href="#根据tag来检出分支" class="headerlink" title="根据tag来检出分支"></a>根据tag来检出分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//1. 获得最新代码</div><div class="line">git pull</div><div class="line">//根据tag创建新的分支</div><div class="line">git branch new_branchname tag-name</div><div class="line"></div><div class="line">例如:git branch newbranch v1.0 . 会以tag v1.0创建新的分支newbranch</div></pre></td></tr></table></figure>
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//删除本地分支（-D 强制删除）</div><div class="line">git branch -D branchname</div><div class="line">//删除远程分支</div><div class="line">git push origin :branchname</div></pre></td></tr></table></figure>
-<h3 id="打tag"><a href="#打tag" class="headerlink" title="打tag"></a>打tag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//本地打tag</div><div class="line">git tag -a v1.1 -m &quot;注释&quot;</div><div class="line">//把tag推到远程</div><div class="line">git push origin v1.1</div><div class="line">//查看所有tag</div><div class="line">git tag -l</div></pre></td></tr></table></figure>
-<h3 id="删除远程tag"><a href="#删除远程tag" class="headerlink" title="删除远程tag"></a>删除远程tag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//删除本地tag</div><div class="line">git tag -d v1.1</div><div class="line">//删除远程tag</div><div class="line">git push origin :v1.1</div><div class="line">//也可以这样</div><div class="line">git push origin --delete tag v1.1</div></pre></td></tr></table></figure>
-<h3 id="远程代码库回滚"><a href="#远程代码库回滚" class="headerlink" title="远程代码库回滚"></a>远程代码库回滚</h3><p>这个是重点要说的内容，过程比本地回滚要复杂<br>应用场景：自动部署系统发布后发现问题，需要回滚到某一个commit，再重新发布<br>原理：先将本地分支退回到某个commit，删除远程分支，再重新push本地分支</p>
-<p>操作步骤如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">1、 git checkout the_branch</div><div class="line"></div><div class="line">2、 git pull</div><div class="line"></div><div class="line">//备份一下这个分支当前的情况</div><div class="line">3、 git branch the_branch_backup</div><div class="line"></div><div class="line">//把the_branch本地回滚到the_commit_id</div><div class="line">4、git reset --hard the_commit_id </div><div class="line"></div><div class="line">//删除远程 the_branch</div><div class="line">5、 git push origin :the_branch</div><div class="line"></div><div class="line">//用回滚后的本地分支重新建立远程分支</div><div class="line">6、 git push origin the_branch</div><div class="line"></div><div class="line">//如果前面都成功了，删除这个备份的本地分支</div><div class="line">7、 git branch -D the_branch_backup</div></pre></td></tr></table></figure></p>
+        <p> 在react开发中，常用的3种方式：</p>
+<h3 id="第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><a href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面" class="headerlink" title="第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)"></a>第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 <a href="#"></a>的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import &#123;Link&#125; from <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line">//<span class="keyword">for</span> example,assuming you have the following route:</div><div class="line">&lt;Route path=<span class="string">"/posts/:postID"</span> component=&#123;Post&#125; /&gt;</div><div class="line">//you could use the following component to link to that route:</div><div class="line">&lt;Link to=&#123;`/posts/<span class="variable">$&#123;post.id&#125;</span>`&#125; /&gt;</div></pre></td></tr></table></figure>
+<h3 id="第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><a href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。" class="headerlink" title="第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。"></a>第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">export</span> default class Abc extends Component &#123;</div><div class="line">		...</div><div class="line">	this.context.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line">Abc.contextTypes= &#123;</div><div class="line">	router: React.PropsTypes.object</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><a href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。" class="headerlink" title="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。"></a>第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import &#123;withRouter&#125; from <span class="string">'react-router'</span>;</div><div class="line">class Abc extends Component &#123;</div><div class="line">	...</div><div class="line">	this.props.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">export</span> default withRouter(Abc);</div></pre></td></tr></table></figure>
+<p> withRouter函数的其实就是把我们把传进去的组件从this.context把router对象放在组件的props里，方便我们使用。</p>
 
       
     </div>
@@ -358,7 +355,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/react-react-router/" rel="tag"># react react-router</a>
           
         </div>
       
@@ -371,8 +368,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/02/js获取url的参数/" rel="next" title="js获取url的参数">
-                <i class="fa fa-chevron-left"></i> js获取url的参数
+              <a href="/2017/07/13/package-json表里版本号前面的-与-的区别/" rel="next" title="package.json表里版本号前面的 ^ 与 ~ 的区别">
+                <i class="fa fa-chevron-left"></i> package.json表里版本号前面的 ^ 与 ~ 的区别
               </a>
             
           </div>
@@ -380,10 +377,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/13/package-json表里版本号前面的-与-的区别/" rel="prev" title="package.json表里版本号前面的 ^ 与 ~ 的区别">
-                package.json表里版本号前面的 ^ 与 ~ 的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,7 +496,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支"><span class="nav-number">1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据tag来检出分支"><span class="nav-number">2.</span> <span class="nav-text">根据tag来检出分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除分支"><span class="nav-number">3.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打tag"><span class="nav-number">4.</span> <span class="nav-text">打tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程tag"><span class="nav-number">5.</span> <span class="nav-text">删除远程tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程代码库回滚"><span class="nav-number">6.</span> <span class="nav-text">远程代码库回滚</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><span class="nav-number">1.</span> <span class="nav-text">第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><span class="nav-number">2.</span> <span class="nav-text">第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><span class="nav-number">3.</span> <span class="nav-text">第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</span></a></li></ol></div>
             
 
           </div>
