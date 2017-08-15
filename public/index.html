@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -214,7 +214,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -257,6 +257,123 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/一个超级简单的redux例子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/15/一个超级简单的redux例子/" itemprop="url">一个超级简单的redux例子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-15T20:05:22+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂，
+这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。
+</code></pre><h4 id="store的几个api"><a href="#store的几个api" class="headerlink" title="store的几个api"></a>store的几个api</h4><pre><code>* dispatch:用于action的分发，改变store里面的state
+* subscribe：注册listener，store里面state发生改变后，执行该listener
+* getState：读取store里面的state
+* replaceReducer：替换reducer，改变state修改的逻辑
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//引入store的创建方法</div><div class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</div><div class="line"></div><div class="line">//定义reducer,即state的改变逻辑</div><div class="line"><span class="keyword">function</span> counter(state=0,action)&#123;</div><div class="line">	<span class="built_in">let</span> &#123;<span class="built_in">type</span>&#125; = action;</div><div class="line"></div><div class="line">	switch(<span class="built_in">type</span>)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'INCREMENT'</span>:</div><div class="line">			<span class="built_in">return</span> ++state;</div><div class="line">		default:</div><div class="line">			<span class="built_in">return</span> state;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建store</div><div class="line"><span class="built_in">let</span> store = createStore(counter);</div><div class="line"></div><div class="line">$(document).click(ev=&gt;&#123;</div><div class="line">	//定义action</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">IncrementAction</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			<span class="built_in">type</span>:<span class="string">'INCREMENT'</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	//分发改action</div><div class="line">	store.dispatch(IncrementAction());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//注册listener，当store里面的state改变的时候会执行</div><div class="line">store.subscribe(()=&gt;&#123;</div><div class="line">	//获取改变后的state</div><div class="line">	<span class="built_in">let</span> state=state.getState();</div><div class="line">	console.log(state);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/在react中路由跳转的几种方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -286,7 +403,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T20:04:28+08:00">
                 2017-08-10
@@ -326,9 +443,9 @@
         
           
             <p> 在react开发中，常用的3种方式：</p>
-<h3 id="第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><a href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面" class="headerlink" title="第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)"></a>第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 <a href="#"></a>的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import &#123;Link&#125; from <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line">//<span class="keyword">for</span> example,assuming you have the following route:</div><div class="line">&lt;Route path=<span class="string">"/posts/:postID"</span> component=&#123;Post&#125; /&gt;</div><div class="line">//you could use the following component to link to that route:</div><div class="line">&lt;Link to=&#123;`/posts/<span class="variable">$&#123;post.id&#125;</span>`&#125; /&gt;</div></pre></td></tr></table></figure>
-<h3 id="第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><a href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。" class="headerlink" title="第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。"></a>第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">export</span> default class Abc extends Component &#123;</div><div class="line">		...</div><div class="line">	this.context.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line">Abc.contextTypes= &#123;</div><div class="line">	router: React.PropsTypes.object</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><a href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。" class="headerlink" title="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。"></a>第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import &#123;withRouter&#125; from <span class="string">'react-router'</span>;</div><div class="line">class Abc extends Component &#123;</div><div class="line">	...</div><div class="line">	this.props.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">export</span> default withRouter(Abc);</div></pre></td></tr></table></figure>
+<h4 id="第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><a href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面" class="headerlink" title="第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)"></a>第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 <a href="#"></a>的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import &#123;Link&#125; from <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line">//<span class="keyword">for</span> example,assuming you have the following route:</div><div class="line">&lt;Route path=<span class="string">"/posts/:postID"</span> component=&#123;Post&#125; /&gt;</div><div class="line">//you could use the following component to link to that route:</div><div class="line">&lt;Link to=&#123;`/posts/<span class="variable">$&#123;post.id&#125;</span>`&#125; /&gt;</div></pre></td></tr></table></figure>
+<h4 id="第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><a href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。" class="headerlink" title="第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。"></a>第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">export</span> default class Abc extends Component &#123;</div><div class="line">		...</div><div class="line">	this.context.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line">Abc.contextTypes= &#123;</div><div class="line">	router: React.PropsTypes.object</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><a href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。" class="headerlink" title="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。"></a>第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import &#123;withRouter&#125; from <span class="string">'react-router'</span>;</div><div class="line">class Abc extends Component &#123;</div><div class="line">	...</div><div class="line">	this.props.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">export</span> default withRouter(Abc);</div></pre></td></tr></table></figure>
 <p> withRouter函数的其实就是把我们把传进去的组件从this.context把router对象放在组件的props里，方便我们使用。</p>
 
           
@@ -402,7 +519,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-13T11:23:10+08:00">
                 2017-07-13
@@ -531,7 +648,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-12T16:43:50+08:00">
                 2017-07-12
@@ -650,7 +767,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-02T16:01:50+08:00">
                 2016-06-02
@@ -766,7 +883,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-30T11:31:41+08:00">
                 2016-05-30
@@ -903,7 +1020,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-18T17:59:55+08:00">
                 2016-05-18
@@ -1023,7 +1140,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-17T16:19:55+08:00">
                 2016-05-17
@@ -1150,8 +1267,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1163,8 +1280,8 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1214,7 +1331,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/10/在react中路由跳转的几种方式/index.html">
 <meta property="og:site_name" content="一些坑,一些收获。">
 <meta property="og:description" content="在react开发中，常用的3种方式： 第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面) 123456import &amp;#123;Link&amp;#125; from &apos;react-router&apos;;//for exa">
-<meta property="og:updated_time" content="2017-08-10T12:32:51.000Z">
+<meta property="og:updated_time" content="2017-08-10T12:36:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在react中路由跳转的几种方式">
 <meta name="twitter:description" content="在react开发中，常用的3种方式： 第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面) 123456import &amp;#123;Link&amp;#125; from &apos;react-router&apos;;//for exa">
@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -214,7 +214,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -284,7 +284,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T20:04:28+08:00">
                 2017-08-10
@@ -322,9 +322,9 @@
 
       
         <p> 在react开发中，常用的3种方式：</p>
-<h3 id="第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><a href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面" class="headerlink" title="第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)"></a>第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 <a href="#"></a>的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import &#123;Link&#125; from <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line">//<span class="keyword">for</span> example,assuming you have the following route:</div><div class="line">&lt;Route path=<span class="string">"/posts/:postID"</span> component=&#123;Post&#125; /&gt;</div><div class="line">//you could use the following component to link to that route:</div><div class="line">&lt;Link to=&#123;`/posts/<span class="variable">$&#123;post.id&#125;</span>`&#125; /&gt;</div></pre></td></tr></table></figure>
-<h3 id="第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><a href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。" class="headerlink" title="第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。"></a>第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">export</span> default class Abc extends Component &#123;</div><div class="line">		...</div><div class="line">	this.context.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line">Abc.contextTypes= &#123;</div><div class="line">	router: React.PropsTypes.object</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><a href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。" class="headerlink" title="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。"></a>第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import &#123;withRouter&#125; from <span class="string">'react-router'</span>;</div><div class="line">class Abc extends Component &#123;</div><div class="line">	...</div><div class="line">	this.props.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">export</span> default withRouter(Abc);</div></pre></td></tr></table></figure>
+<h4 id="第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><a href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面" class="headerlink" title="第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)"></a>第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 <a href="#"></a>的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import &#123;Link&#125; from <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line">//<span class="keyword">for</span> example,assuming you have the following route:</div><div class="line">&lt;Route path=<span class="string">"/posts/:postID"</span> component=&#123;Post&#125; /&gt;</div><div class="line">//you could use the following component to link to that route:</div><div class="line">&lt;Link to=&#123;`/posts/<span class="variable">$&#123;post.id&#125;</span>`&#125; /&gt;</div></pre></td></tr></table></figure>
+<h4 id="第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><a href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。" class="headerlink" title="第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。"></a>第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">export</span> default class Abc extends Component &#123;</div><div class="line">		...</div><div class="line">	this.context.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line">Abc.contextTypes= &#123;</div><div class="line">	router: React.PropsTypes.object</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><a href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。" class="headerlink" title="第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。"></a>第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import &#123;withRouter&#125; from <span class="string">'react-router'</span>;</div><div class="line">class Abc extends Component &#123;</div><div class="line">	...</div><div class="line">	this.props.router.push(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">export</span> default withRouter(Abc);</div></pre></td></tr></table></figure>
 <p> withRouter函数的其实就是把我们把传进去的组件从this.context把router对象放在组件的props里，方便我们使用。</p>
 
       
@@ -378,6 +378,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/08/15/一个超级简单的redux例子/" rel="prev" title="一个超级简单的redux例子">
+                一个超级简单的redux例子 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -425,10 +429,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -448,8 +452,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -461,8 +465,8 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -496,7 +500,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><span class="nav-number">1.</span> <span class="nav-text">第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><span class="nav-number">2.</span> <span class="nav-text">第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><span class="nav-number">3.</span> <span class="nav-text">第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种，也是最简单的方式，用react-router-提供的Link组件来跳转-Link组件实质是创建一个A标签，当点击的时候用router-push-去做单页面的跳转-ps-它与-的跳转不一样-，后者是多页面之间的跳转，会刷新整个页面"><span class="nav-number">1.</span> <span class="nav-text">第一种，也是最简单的方式，用react-router 提供的Link组件来跳转,Link组件实质是创建一个A标签，当点击的时候用router.push()去做单页面的跳转(ps 它与 的跳转不一样 ，后者是多页面之间的跳转，会刷新整个页面)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种，使用官方提供的方式-this-context-router-不过在使用之前必须定义这个类的contextTypes。"><span class="nav-number">2.</span> <span class="nav-text">第二种，使用官方提供的方式 this.context.router,不过在使用之前必须定义这个类的contextTypes。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this-props中获得router对象，同时也不用定义类的contextTypes。"><span class="nav-number">3.</span> <span class="nav-text">第三种，使用react-router提供的withRouter高阶函数包装一下，使得能在this.props中获得router对象，同时也不用定义类的contextTypes。</span></a></li></ol></div>
             
 
           </div>
@@ -528,7 +532,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
