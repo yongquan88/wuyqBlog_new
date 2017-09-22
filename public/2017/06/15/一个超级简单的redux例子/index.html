@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="npm," />
+  <meta name="keywords" content="redux," />
 
 
 
@@ -93,20 +93,17 @@
 
 
 
-<meta name="description" content="如图，在package.json中的依赖包版本号前默认都是带有前缀 ^ 或者 ~    那么 ^ 和 ~ 有什么作用？两者又有什么区别呢？ 首先我们来看下常见npm依赖包版本号的组成规则以及其含义：   版本号一般由3个数字组成，如 1.2.3   其中第一个数字表示major大版本号，表示含有破坏性更新和新特性才会改变这个大版本号；   第二位数字是表示minor版本，更新活修改一些次要的功能时">
-<meta name="keywords" content="npm">
+<meta name="description" content="随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂， 这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。 store的几个api* dispatch:用于action的分发，改变store里面的state * subscribe：注册listener，store里面state发生改变后，执行该listener * getSta">
+<meta name="keywords" content="redux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="package.json表里版本号前面的 ^ 与 ~ 的区别">
-<meta property="og:url" content="http://yoursite.com/2017/07/13/package-json表里版本号前面的-与-的区别/index.html">
+<meta property="og:title" content="一个超级简单的redux例子">
+<meta property="og:url" content="http://yoursite.com/2017/06/15/一个超级简单的redux例子/index.html">
 <meta property="og:site_name" content="一些坑,一些收获。">
-<meta property="og:description" content="如图，在package.json中的依赖包版本号前默认都是带有前缀 ^ 或者 ~    那么 ^ 和 ~ 有什么作用？两者又有什么区别呢？ 首先我们来看下常见npm依赖包版本号的组成规则以及其含义：   版本号一般由3个数字组成，如 1.2.3   其中第一个数字表示major大版本号，表示含有破坏性更新和新特性才会改变这个大版本号；   第二位数字是表示minor版本，更新活修改一些次要的功能时">
-<meta property="og:image" content="http://yoursite.com/uploads/packagejson.png">
-<meta property="og:image" content="http://yoursite.com/uploads/wheelbarrel-with-tilde-caret-white-bg-w1000.jpg">
-<meta property="og:updated_time" content="2017-07-13T07:21:28.000Z">
+<meta property="og:description" content="随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂， 这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。 store的几个api* dispatch:用于action的分发，改变store里面的state * subscribe：注册listener，store里面state发生改变后，执行该listener * getSta">
+<meta property="og:updated_time" content="2017-08-15T12:39:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="package.json表里版本号前面的 ^ 与 ~ 的区别">
-<meta name="twitter:description" content="如图，在package.json中的依赖包版本号前默认都是带有前缀 ^ 或者 ~    那么 ^ 和 ~ 有什么作用？两者又有什么区别呢？ 首先我们来看下常见npm依赖包版本号的组成规则以及其含义：   版本号一般由3个数字组成，如 1.2.3   其中第一个数字表示major大版本号，表示含有破坏性更新和新特性才会改变这个大版本号；   第二位数字是表示minor版本，更新活修改一些次要的功能时">
-<meta name="twitter:image" content="http://yoursite.com/uploads/packagejson.png">
+<meta name="twitter:title" content="一个超级简单的redux例子">
+<meta name="twitter:description" content="随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂， 这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。 store的几个api* dispatch:用于action的分发，改变store里面的state * subscribe：注册listener，store里面state发生改变后，执行该listener * getSta">
 
 
 
@@ -134,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/13/package-json表里版本号前面的-与-的区别/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/15/一个超级简单的redux例子/"/>
 
 
 
 
 
-  <title>package.json表里版本号前面的 ^ 与 ~ 的区别 | 一些坑,一些收获。</title>
+  <title>一个超级简单的redux例子 | 一些坑,一些收获。</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -260,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/13/package-json表里版本号前面的-与-的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/一个超级简单的redux例子/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="永泉。">
@@ -277,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">package.json表里版本号前面的 ^ 与 ~ 的区别</h1>
+          <h1 class="post-title" itemprop="name headline">一个超级简单的redux例子</h1>
         
 
         <div class="post-meta">
@@ -289,8 +286,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-13T11:23:10+08:00">
-                2017-07-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-15T20:05:22+08:00">
+                2017-06-15
               </time>
             
 
@@ -324,25 +321,13 @@
       
 
       
-        <p>如图，在package.json中的依赖包版本号前默认都是带有前缀 ^ 或者 ~</p>
-<p> <img src="/uploads/packagejson.png" alt="Mou icon"></p>
-<p> 那么 ^ 和 ~ 有什么作用？两者又有什么区别呢？<br> 首先我们来看下常见npm依赖包版本号的组成规则以及其含义：<br>   版本号一般由3个数字组成，如 1.2.3<br>   其中第一个数字表示major大版本号，表示含有破坏性更新和新特性才会改变这个大版本号；<br>   第二位数字是表示minor版本，更新活修改一些次要的功能时改变这个版本号；<br>   第三位数字表示patch版本，通常会进行日常bugfix更新会更新这个版本号</p>
-<p>   他们的作用和区别就是</p>
-<pre><code>        ~会匹配最近的小版本依赖包，比如~1.2.3会匹配所有1.2.x版本，但是不包括1.3.0
-        ^会匹配最新的大版本依赖包，比如^1.2.3会匹配所有1.x.x的包，包括1.3.0，但是不包括2.0.0
-
-那么该如何选择呢？
-        当然你可以指定特定的版本号，直接写1.2.3，前面什么前缀都没有，这样固然没问题，但是如果依赖包发布新版本修复了一些小bug，那么需要手动修改package.json文件；~和^则可以解决这个问题。
-
-
-        但是需要注意^版本更新可能比较大，会造成项目代码错误，因为有可能存在package.json使用^1.5.7造成的，但使用了^之后自动更新到1.6版本的包与现有代码不兼容。
-
-        所以建议使用~来标记版本号，这样可以保证项目不会出现大的问题，也能保证包中的小bug可以得到修复。
-
-
-这个图能让你对 ^ ~ 的理解一目了然 
-</code></pre><p><img src="/uploads/wheelbarrel-with-tilde-caret-white-bg-w1000.jpg" alt="Mou icon"></p>
-
+        <pre><code>随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂，
+这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。
+</code></pre><h4 id="store的几个api"><a href="#store的几个api" class="headerlink" title="store的几个api"></a>store的几个api</h4><pre><code>* dispatch:用于action的分发，改变store里面的state
+* subscribe：注册listener，store里面state发生改变后，执行该listener
+* getState：读取store里面的state
+* replaceReducer：替换reducer，改变state修改的逻辑
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//引入store的创建方法</div><div class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</div><div class="line"></div><div class="line">//定义reducer,即state的改变逻辑</div><div class="line"><span class="keyword">function</span> counter(state=0,action)&#123;</div><div class="line">	<span class="built_in">let</span> &#123;<span class="built_in">type</span>&#125; = action;</div><div class="line"></div><div class="line">	switch(<span class="built_in">type</span>)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'INCREMENT'</span>:</div><div class="line">			<span class="built_in">return</span> ++state;</div><div class="line">		default:</div><div class="line">			<span class="built_in">return</span> state;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建store</div><div class="line"><span class="built_in">let</span> store = createStore(counter);</div><div class="line"></div><div class="line">$(document).click(ev=&gt;&#123;</div><div class="line">	//定义action</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">IncrementAction</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			<span class="built_in">type</span>:<span class="string">'INCREMENT'</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	//分发改action</div><div class="line">	store.dispatch(IncrementAction());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//注册listener，当store里面的state改变的时候会执行</div><div class="line">store.subscribe(()=&gt;&#123;</div><div class="line">	//获取改变后的state</div><div class="line">	<span class="built_in">let</span> state=state.getState();</div><div class="line">	console.log(state);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -371,7 +356,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/npm/" rel="tag"># npm</a>
+            <a href="/tags/redux/" rel="tag"># redux</a>
           
         </div>
       
@@ -384,8 +369,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/12/git-常用命令/" rel="next" title="git 常用命令">
-                <i class="fa fa-chevron-left"></i> git 常用命令
+              <a href="/2016/06/02/js获取url的参数/" rel="next" title="js获取url的参数">
+                <i class="fa fa-chevron-left"></i> js获取url的参数
               </a>
             
           </div>
@@ -394,8 +379,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/10/在react中路由跳转的几种方式/" rel="prev" title="在react中路由跳转的几种方式">
-                在react中路由跳转的几种方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/12/git-常用命令/" rel="prev" title="git 常用命令">
+                git 常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -443,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -497,6 +491,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#store的几个api"><span class="nav-number">1.</span> <span class="nav-text">store的几个api</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

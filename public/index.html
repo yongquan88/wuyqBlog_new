@@ -257,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/一个超级简单的redux例子/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/22/http-缓存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="永泉。">
@@ -276,7 +276,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/15/一个超级简单的redux例子/" itemprop="url">一个超级简单的redux例子</a></h1>
+                <a class="post-title-link" href="/2017/09/22/http-缓存/" itemprop="url">http 缓存</a></h1>
         
 
         <div class="post-meta">
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-15T20:05:22+08:00">
-                2017-08-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-22T11:14:27+08:00">
+                2017-09-22
               </time>
             
 
@@ -325,13 +325,35 @@
       
         
           
-            <pre><code>随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂，
-这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。
-</code></pre><h4 id="store的几个api"><a href="#store的几个api" class="headerlink" title="store的几个api"></a>store的几个api</h4><pre><code>* dispatch:用于action的分发，改变store里面的state
-* subscribe：注册listener，store里面state发生改变后，执行该listener
-* getState：读取store里面的state
-* replaceReducer：替换reducer，改变state修改的逻辑
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//引入store的创建方法</div><div class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</div><div class="line"></div><div class="line">//定义reducer,即state的改变逻辑</div><div class="line"><span class="keyword">function</span> counter(state=0,action)&#123;</div><div class="line">	<span class="built_in">let</span> &#123;<span class="built_in">type</span>&#125; = action;</div><div class="line"></div><div class="line">	switch(<span class="built_in">type</span>)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'INCREMENT'</span>:</div><div class="line">			<span class="built_in">return</span> ++state;</div><div class="line">		default:</div><div class="line">			<span class="built_in">return</span> state;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建store</div><div class="line"><span class="built_in">let</span> store = createStore(counter);</div><div class="line"></div><div class="line">$(document).click(ev=&gt;&#123;</div><div class="line">	//定义action</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">IncrementAction</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			<span class="built_in">type</span>:<span class="string">'INCREMENT'</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	//分发改action</div><div class="line">	store.dispatch(IncrementAction());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//注册listener，当store里面的state改变的时候会执行</div><div class="line">store.subscribe(()=&gt;&#123;</div><div class="line">	//获取改变后的state</div><div class="line">	<span class="built_in">let</span> state=state.getState();</div><div class="line">	console.log(state);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+            <pre><code>整个Web系统架构在HTTP协议之上,合理利用好HTTP提供的缓存机制不仅可以极大的减少服务器负载,更重要的加速页面的载入,以及减少用户流量的消耗.
+快速到达和易于访问是Web与生俱来的特性,其缓存机制也早已被服务器和浏览器厂商广泛的实现了.这里我们从缓存的三个方面记录一下HTTP缓存的内容.
+</code></pre><h3 id="HTTP-缓存体系"><a href="#HTTP-缓存体系" class="headerlink" title="HTTP 缓存体系"></a>HTTP 缓存体系</h3><pre><code>首先我们将HTTP缓存体系分为三个部分,分别是  缓存存储策略 缓存过期策略 缓存对比策略(协商策略)
+</code></pre><p> <img src="/uploads/httpCache1.png" alt="Mou icon"></p>
+<h4 id="缓存存储策略"><a href="#缓存存储策略" class="headerlink" title="缓存存储策略"></a>缓存存储策略</h4><pre><code>Cache-Control 用来确定HTTP响应内容是否可以被客户端缓存,以及被那些客户端缓存;Cache-Control的值有以下这些:
+    * no-cache : 表示必须先与服务器确认返回的响应是否被更改,如果未更改则可以直接从缓存里获取,避免重复下载(ps:也就是内容会被缓存起来,但之后想用的时候必须先跟服务器确认内容是否被更改过了)
+    * no-store :禁止缓存任何响应,也就是说每次用户请求资源时,都会向服务器发送一个请求,每次都会下载完整的响应
+    * public : 大家都可以缓存,包括代理
+    * private : 浏览器可以缓存private响应,但是通常只为单个用户缓存,因此不允许任何代理服务器对其进行缓存.比如用户浏览器可以缓存用户的私人信息的html网页,但cdn不能缓存.
+    * max-age : 用来设置资源缓存的最长时间(单位是秒)
+
+    通过Cache-Control:Public 设置缓存HTTP响应数据存储到本地,但此时并不意味着后续的请求会直接从缓存中读取数据并使用,这是为什么呢?因为它无法确定本地缓存的数据是否可用(有可能已经失效),还必须借助其它鉴别机制来确认才行,这就是我们下面要说的&quot;缓存过期策略&quot;.
+</code></pre><h4 id="缓存过期策略"><a href="#缓存过期策略" class="headerlink" title="缓存过期策略"></a>缓存过期策略</h4><pre><code>客户端用来确定存储在本地的缓存数据是否已过期,进而觉得是否要发请求到服务器获取数据.不过期就读取本地缓存数据,过期的话就发请求到服务端获取;
+那么浏览器是通过什么参数来判断的呢?答案是:Expires,Expires指定了缓存数据有效的绝对时间,告诉客户端到了这个时间点(与客户端时间对比)后本地缓存就作废了,
+在这个时间点内客户端可以认为缓存数据有效,可直接从缓存中加载展示.
+
+不过HTTP缓存头设计并没有想象那么规矩,
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//比如</div><div class="line">Cache-Control:max-age</div><div class="line">//相当于=&gt;</div><div class="line">Cache-Control:Public/Private</div><div class="line">Expires:当前客户端时间+maxage</div><div class="line"></div><div class="line">//而</div><div class="line">Cache-Control:no-Cache</div><div class="line">//等同于</div><div class="line">Cache-Control:max-age=0</div></pre></td></tr></table></figure>
+
+ps:
+1.Cache-Control中指定的缓存过期策略优先级高于Expires,当它们同时存在的时候,后者会被覆盖掉.
+2.缓存数据标记为已过期只是告诉客户端不能再直接从本地读取缓存了,需要再发一次请求到服务器去确认,并不等同于本地缓存数据从此没用了,有些情况即使过期了还是会被再次用到,具体下面会讲到.
+</code></pre><h4 id="缓存对比策略"><a href="#缓存对比策略" class="headerlink" title="缓存对比策略"></a>缓存对比策略</h4><pre><code>将缓存在客户端的数据标识发往服务端,服务端通过标识来判断客户端缓存数据是否有效,进而决定是否要重发数据.
+
+客户端检测到缓存数据过期或浏览器刷新后,往往会重新发起一个http请求到服务器,服务器此时并不急于返回数据,而是看请求头有没有带有标识(If-Modified-Since、If-None-Match)过来,如果判断标识仍然有效,则返回304告诉客户端读取本地缓存数据来用即可(这里要注意的是你必须要在首次响应时输出响应的头信息(Last-Modified、ETags)到客户端).至此我们就明白了上面所说的本地缓存数据即使被认为过期,并不等于数据从此就没用了的道理了.
+
+下面我将缓存策略三要素和常用的几个缓存头（项）结合一起，让大家更清晰的认识到它们之间的关系：
+</code></pre><p> <img src="/uploads/httpCache2.png" alt="Mou icon"></p>
+
           
         
       
@@ -696,6 +718,123 @@
 <h3 id="远程代码库回滚"><a href="#远程代码库回滚" class="headerlink" title="远程代码库回滚"></a>远程代码库回滚</h3><p>这个是重点要说的内容，过程比本地回滚要复杂<br>应用场景：自动部署系统发布后发现问题，需要回滚到某一个commit，再重新发布<br>原理：先将本地分支退回到某个commit，删除远程分支，再重新push本地分支</p>
 <p>操作步骤如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">1、 git checkout the_branch</div><div class="line"></div><div class="line">2、 git pull</div><div class="line"></div><div class="line">//备份一下这个分支当前的情况</div><div class="line">3、 git branch the_branch_backup</div><div class="line"></div><div class="line">//把the_branch本地回滚到the_commit_id</div><div class="line">4、git reset --hard the_commit_id </div><div class="line"></div><div class="line">//删除远程 the_branch</div><div class="line">5、 git push origin :the_branch</div><div class="line"></div><div class="line">//用回滚后的本地分支重新建立远程分支</div><div class="line">6、 git push origin the_branch</div><div class="line"></div><div class="line">//如果前面都成功了，删除这个备份的本地分支</div><div class="line">7、 git branch -D the_branch_backup</div></pre></td></tr></table></figure></p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/一个超级简单的redux例子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/15/一个超级简单的redux例子/" itemprop="url">一个超级简单的redux例子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-15T20:05:22+08:00">
+                2017-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂，
+这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。
+</code></pre><h4 id="store的几个api"><a href="#store的几个api" class="headerlink" title="store的几个api"></a>store的几个api</h4><pre><code>* dispatch:用于action的分发，改变store里面的state
+* subscribe：注册listener，store里面state发生改变后，执行该listener
+* getState：读取store里面的state
+* replaceReducer：替换reducer，改变state修改的逻辑
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//引入store的创建方法</div><div class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</div><div class="line"></div><div class="line">//定义reducer,即state的改变逻辑</div><div class="line"><span class="keyword">function</span> counter(state=0,action)&#123;</div><div class="line">	<span class="built_in">let</span> &#123;<span class="built_in">type</span>&#125; = action;</div><div class="line"></div><div class="line">	switch(<span class="built_in">type</span>)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'INCREMENT'</span>:</div><div class="line">			<span class="built_in">return</span> ++state;</div><div class="line">		default:</div><div class="line">			<span class="built_in">return</span> state;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建store</div><div class="line"><span class="built_in">let</span> store = createStore(counter);</div><div class="line"></div><div class="line">$(document).click(ev=&gt;&#123;</div><div class="line">	//定义action</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">IncrementAction</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			<span class="built_in">type</span>:<span class="string">'INCREMENT'</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	//分发改action</div><div class="line">	store.dispatch(IncrementAction());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//注册listener，当store里面的state改变的时候会执行</div><div class="line">store.subscribe(()=&gt;&#123;</div><div class="line">	//获取改变后的state</div><div class="line">	<span class="built_in">let</span> state=state.getState();</div><div class="line">	console.log(state);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
           
         
       
@@ -1267,7 +1406,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1280,7 +1419,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
