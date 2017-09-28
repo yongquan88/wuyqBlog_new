@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="闭包," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
-<meta name="keywords" content="git">
+<meta name="description" content="什么是闭包?函数嵌套函数,内部函数可以引用外部函数的参数和变量,参数和变量不会被垃圾回收机制所收回.(ps:可以理解为闭包的本质就是延迟变量的生产周期) 1234567891011//一个简单的闭包栗子,变量a在执行完之后不会被垃圾回收机制回收function aaa()&amp;#123;    var b=5;    var c=10;    function bbb()&amp;#123;        a">
+<meta name="keywords" content="闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 常用命令">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/git-常用命令/index.html">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="http://yoursite.com/2017/09/28/闭包/index.html">
 <meta property="og:site_name" content="一些坑,一些收获。">
-<meta property="og:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
-<meta property="og:updated_time" content="2017-07-20T13:03:13.000Z">
+<meta property="og:description" content="什么是闭包?函数嵌套函数,内部函数可以引用外部函数的参数和变量,参数和变量不会被垃圾回收机制所收回.(ps:可以理解为闭包的本质就是延迟变量的生产周期) 1234567891011//一个简单的闭包栗子,变量a在执行完之后不会被垃圾回收机制回收function aaa()&amp;#123;    var b=5;    var c=10;    function bbb()&amp;#123;        a">
+<meta property="og:updated_time" content="2017-09-28T08:51:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 常用命令">
-<meta name="twitter:description" content="记录一下常用的git命令 创建分支123456//创建并切换到新分支git checkout -b branchname//把本地分支推送到远程git push origin branchname//查看远程分支git branch -r 根据tag来检出分支123456//1. 获得最新代码git pull//根据tag创建新的分支git branch new_branchname tag-na">
+<meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="什么是闭包?函数嵌套函数,内部函数可以引用外部函数的参数和变量,参数和变量不会被垃圾回收机制所收回.(ps:可以理解为闭包的本质就是延迟变量的生产周期) 1234567891011//一个简单的闭包栗子,变量a在执行完之后不会被垃圾回收机制回收function aaa()&amp;#123;    var b=5;    var c=10;    function bbb()&amp;#123;        a">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/12/git-常用命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/28/闭包/"/>
 
 
 
 
 
-  <title>git 常用命令 | 一些坑,一些收获。</title>
+  <title>闭包 | 一些坑,一些收获。</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -257,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/12/git-常用命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/28/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="永泉。">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git 常用命令</h1>
+          <h1 class="post-title" itemprop="name headline">闭包</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-12T16:43:50+08:00">
-                2017-07-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-28T15:48:40+08:00">
+                2017-09-28
               </time>
             
 
@@ -321,15 +321,19 @@
       
 
       
-        <p>记录一下常用的git命令</p>
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//创建并切换到新分支</div><div class="line">git checkout -b branchname</div><div class="line">//把本地分支推送到远程</div><div class="line">git push origin branchname</div><div class="line">//查看远程分支</div><div class="line">git branch -r</div></pre></td></tr></table></figure>
-<h3 id="根据tag来检出分支"><a href="#根据tag来检出分支" class="headerlink" title="根据tag来检出分支"></a>根据tag来检出分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//1. 获得最新代码</div><div class="line">git pull</div><div class="line">//根据tag创建新的分支</div><div class="line">git branch new_branchname tag-name</div><div class="line"></div><div class="line">例如:git branch newbranch v1.0 . 会以tag v1.0创建新的分支newbranch</div></pre></td></tr></table></figure>
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//删除本地分支（-D 强制删除）</div><div class="line">git branch -D branchname</div><div class="line">//删除远程分支</div><div class="line">git push origin :branchname</div></pre></td></tr></table></figure>
-<h3 id="打tag"><a href="#打tag" class="headerlink" title="打tag"></a>打tag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//本地打tag</div><div class="line">git tag -a v1.1 -m &quot;注释&quot;</div><div class="line">//把tag推到远程</div><div class="line">git push origin v1.1</div><div class="line">//查看所有tag</div><div class="line">git tag -l</div></pre></td></tr></table></figure>
-<h3 id="删除远程tag"><a href="#删除远程tag" class="headerlink" title="删除远程tag"></a>删除远程tag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//删除本地tag</div><div class="line">git tag -d v1.1</div><div class="line">//删除远程tag</div><div class="line">git push origin :v1.1</div><div class="line">//也可以这样</div><div class="line">git push origin --delete tag v1.1</div></pre></td></tr></table></figure>
-<h3 id="远程代码库回滚"><a href="#远程代码库回滚" class="headerlink" title="远程代码库回滚"></a>远程代码库回滚</h3><p>这个是重点要说的内容，过程比本地回滚要复杂<br>应用场景：自动部署系统发布后发现问题，需要回滚到某一个commit，再重新发布<br>原理：先将本地分支退回到某个commit，删除远程分支，再重新push本地分支</p>
-<p>操作步骤如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">1、 git checkout the_branch</div><div class="line"></div><div class="line">2、 git pull</div><div class="line"></div><div class="line">//备份一下这个分支当前的情况</div><div class="line">3、 git branch the_branch_backup</div><div class="line"></div><div class="line">//把the_branch本地回滚到the_commit_id</div><div class="line">4、git reset --hard the_commit_id </div><div class="line"></div><div class="line">//删除远程 the_branch</div><div class="line">5、 git push origin :the_branch</div><div class="line"></div><div class="line">//用回滚后的本地分支重新建立远程分支</div><div class="line">6、 git push origin the_branch</div><div class="line"></div><div class="line">//如果前面都成功了，删除这个备份的本地分支</div><div class="line">7、 git branch -D the_branch_backup</div></pre></td></tr></table></figure></p>
-
+        <h4 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包?"></a>什么是闭包?</h4><pre><code>函数嵌套函数,内部函数可以引用外部函数的参数和变量,参数和变量不会被垃圾回收机制所收回.(ps:可以理解为闭包的本质就是延迟变量的生产周期)
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//一个简单的闭包栗子,变量a在执行完之后不会被垃圾回收机制回收</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">aaa</span></span>()&#123;</div><div class="line">    var b=5;</div><div class="line">    var c=10;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        alert(b);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> bbb;</div><div class="line">&#125;</div><div class="line">var c=aaa();</div><div class="line">c();//5</div></pre></td></tr></table></figure>
+<h4 id="闭包的好处与应用"><a href="#闭包的好处与应用" class="headerlink" title="闭包的好处与应用?"></a>闭包的好处与应用?</h4><ul>
+<li>1.避免变量全局污染</li>
+<li>2.希望一个变量长期驻扎在内存中</li>
+<li>3.私有成员的存在<br>应用:<pre><code>1.模块化
+</code></pre></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">//全局污染的形式</div><div class="line">var a=1;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">aaa</span></span>()&#123;</div><div class="line">    a++;</div><div class="line">    alert(a);</div><div class="line">&#125;</div><div class="line">aaa();//2</div><div class="line">aaa();//3</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">show</span></span>()&#123;</div><div class="line">    var a=1;//全局变量</div><div class="line">&#125;</div><div class="line">show();</div><div class="line"></div><div class="line">//此例子中的变量a是全局变量,会被后面的show方法改变</div><div class="line"></div><div class="line">//闭包的形式</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">aaa</span></span>()&#123;</div><div class="line">    var a=1;</div><div class="line">    <span class="built_in">return</span> <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        a++;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var c=aaa();</div><div class="line">c();//2</div><div class="line">c();//3</div><div class="line"></div><div class="line">alert(a);//error  a is not defined</div></pre></td></tr></table></figure>
+<h4 id="闭包的表达式写法"><a href="#闭包的表达式写法" class="headerlink" title="闭包的表达式写法"></a>闭包的表达式写法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = (<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    var a = 1;</div><div class="line">    <span class="built_in">return</span> <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        a++;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div><div class="line">a();//2</div><div class="line">a();//3</div></pre></td></tr></table></figure>
+<h4 id="闭包的应用-模块化"><a href="#闭包的应用-模块化" class="headerlink" title="闭包的应用-模块化"></a>闭包的应用-模块化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var aa =(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    var a=1;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        a++;</div><div class="line">        alert(a);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">ccc</span></span>()&#123;</div><div class="line">        a--;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> &#123;</div><div class="line">        a:bbb,</div><div class="line">        b:ccc</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div><div class="line">aa.a();//2</div><div class="line">aa.b();//1</div><div class="line">console.log(a); //error a is not defined</div></pre></td></tr></table></figure>
+<h4 id="使用闭包应该注意的地方"><a href="#使用闭包应该注意的地方" class="headerlink" title="使用闭包应该注意的地方"></a>使用闭包应该注意的地方</h4><pre><code>在IE下容易造成内存泄漏
+</code></pre>
       
     </div>
 
@@ -358,7 +362,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/闭包/" rel="tag"># 闭包</a>
           
         </div>
       
@@ -371,8 +375,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/15/一个超级简单的redux例子/" rel="next" title="一个超级简单的redux例子">
-                <i class="fa fa-chevron-left"></i> 一个超级简单的redux例子
+              <a href="/2017/09/22/http-缓存/" rel="next" title="http 缓存">
+                <i class="fa fa-chevron-left"></i> http 缓存
               </a>
             
           </div>
@@ -380,10 +384,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/13/package-json表里版本号前面的-与-的区别/" rel="prev" title="package.json表里版本号前面的 ^ 与 ~ 的区别">
-                package.json表里版本号前面的 ^ 与 ~ 的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,7 +503,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支"><span class="nav-number">1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据tag来检出分支"><span class="nav-number">2.</span> <span class="nav-text">根据tag来检出分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除分支"><span class="nav-number">3.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打tag"><span class="nav-number">4.</span> <span class="nav-text">打tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程tag"><span class="nav-number">5.</span> <span class="nav-text">删除远程tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程代码库回滚"><span class="nav-number">6.</span> <span class="nav-text">远程代码库回滚</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是闭包"><span class="nav-number">1.</span> <span class="nav-text">什么是闭包?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的好处与应用"><span class="nav-number">2.</span> <span class="nav-text">闭包的好处与应用?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的表达式写法"><span class="nav-number">3.</span> <span class="nav-text">闭包的表达式写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的应用-模块化"><span class="nav-number">4.</span> <span class="nav-text">闭包的应用-模块化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用闭包应该注意的地方"><span class="nav-number">5.</span> <span class="nav-text">使用闭包应该注意的地方</span></a></li></ol></div>
             
 
           </div>

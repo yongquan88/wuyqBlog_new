@@ -257,6 +257,129 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/28/闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/28/闭包/" itemprop="url">闭包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-28T15:48:40+08:00">
+                2017-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包?"></a>什么是闭包?</h4><pre><code>函数嵌套函数,内部函数可以引用外部函数的参数和变量,参数和变量不会被垃圾回收机制所收回.(ps:可以理解为闭包的本质就是延迟变量的生产周期)
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//一个简单的闭包栗子,变量a在执行完之后不会被垃圾回收机制回收</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">aaa</span></span>()&#123;</div><div class="line">    var b=5;</div><div class="line">    var c=10;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        alert(b);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> bbb;</div><div class="line">&#125;</div><div class="line">var c=aaa();</div><div class="line">c();//5</div></pre></td></tr></table></figure>
+<h4 id="闭包的好处与应用"><a href="#闭包的好处与应用" class="headerlink" title="闭包的好处与应用?"></a>闭包的好处与应用?</h4><ul>
+<li>1.避免变量全局污染</li>
+<li>2.希望一个变量长期驻扎在内存中</li>
+<li>3.私有成员的存在<br>应用:<pre><code>1.模块化
+</code></pre></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">//全局污染的形式</div><div class="line">var a=1;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">aaa</span></span>()&#123;</div><div class="line">    a++;</div><div class="line">    alert(a);</div><div class="line">&#125;</div><div class="line">aaa();//2</div><div class="line">aaa();//3</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">show</span></span>()&#123;</div><div class="line">    var a=1;//全局变量</div><div class="line">&#125;</div><div class="line">show();</div><div class="line"></div><div class="line">//此例子中的变量a是全局变量,会被后面的show方法改变</div><div class="line"></div><div class="line">//闭包的形式</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">aaa</span></span>()&#123;</div><div class="line">    var a=1;</div><div class="line">    <span class="built_in">return</span> <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        a++;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var c=aaa();</div><div class="line">c();//2</div><div class="line">c();//3</div><div class="line"></div><div class="line">alert(a);//error  a is not defined</div></pre></td></tr></table></figure>
+<h4 id="闭包的表达式写法"><a href="#闭包的表达式写法" class="headerlink" title="闭包的表达式写法"></a>闭包的表达式写法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = (<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    var a = 1;</div><div class="line">    <span class="built_in">return</span> <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        a++;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div><div class="line">a();//2</div><div class="line">a();//3</div></pre></td></tr></table></figure>
+<h4 id="闭包的应用-模块化"><a href="#闭包的应用-模块化" class="headerlink" title="闭包的应用-模块化"></a>闭包的应用-模块化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var aa =(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    var a=1;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bbb</span></span>()&#123;</div><div class="line">        a++;</div><div class="line">        alert(a);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">ccc</span></span>()&#123;</div><div class="line">        a--;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> &#123;</div><div class="line">        a:bbb,</div><div class="line">        b:ccc</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div><div class="line">aa.a();//2</div><div class="line">aa.b();//1</div><div class="line">console.log(a); //error a is not defined</div></pre></td></tr></table></figure>
+<h4 id="使用闭包应该注意的地方"><a href="#使用闭包应该注意的地方" class="headerlink" title="使用闭包应该注意的地方"></a>使用闭包应该注意的地方</h4><pre><code>在IE下容易造成内存泄漏
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/22/http-缓存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1406,7 +1529,7 @@ ps:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1419,7 +1542,7 @@ ps:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
