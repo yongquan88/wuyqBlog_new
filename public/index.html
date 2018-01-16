@@ -257,6 +257,126 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/this指向分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/this指向分析/" itemprop="url">this指向分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T15:25:10+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="两个基本原则"><a href="#两个基本原则" class="headerlink" title="两个基本原则"></a>两个基本原则</h3><pre><code>* this要在执行的时候才能确定值，定义时无法确定
+* 谁调用指向谁，没有谁调用就指向window
+
+eg：
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//var name=<span class="string">'i am window name'</span>;//window下的name</div><div class="line">var a=&#123;</div><div class="line">	name:<span class="string">'wuyq'</span>,</div><div class="line">	fn:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.fn(); //this===a</div><div class="line">a.fn.call(&#123;name:<span class="string">'hello world'</span>&#125;);  //this===&#123;name:<span class="string">'hello world'</span>&#125;</div><div class="line">var fn1=a.fn;</div><div class="line">fn1(); //this===window</div></pre></td></tr></table></figure>
+<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><pre><code>*1.作为构造函数执行 this.name...
+*2.作为对象属性执行 f.callname()
+*3.作为普通函数执行 testFn() this指向window
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//执行构造函数</div><div class="line">	<span class="keyword">function</span> Foo (name)&#123;</div><div class="line">		//this=&#123;&#125;;</div><div class="line">		this.name=name;</div><div class="line">		// <span class="built_in">return</span> this;</div><div class="line">	&#125;</div><div class="line">	var f = new Foo(<span class="string">'wuyq'</span>);</div><div class="line">	f.name;</div><div class="line"></div><div class="line">	//执行对象属性</div><div class="line">	var obj=&#123;</div><div class="line">		name:<span class="string">'wuyq'</span>,</div><div class="line">		sex:<span class="string">'man'</span>,</div><div class="line">		say:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			console.log(this.name);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	obj.say();//this===obj</div><div class="line"></div><div class="line">	// //作为普通函数执行</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">testFn</span></span>()&#123;</div><div class="line">		console.log(this);</div><div class="line">	&#125;</div><div class="line">	testFn();//this===window</div></pre></td></tr></table></figure>
+<h3 id="call-apply-bind-可以改变this指向"><a href="#call-apply-bind-可以改变this指向" class="headerlink" title="call apply bind 可以改变this指向"></a>call apply bind 可以改变this指向</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> fn1(name)&#123;</div><div class="line">		console.log(name);</div><div class="line">		console.log(this);</div><div class="line">		console.log(arguments);</div><div class="line">	&#125;</div><div class="line">	fn1(<span class="string">'hello'</span>);</div><div class="line">	//call改变this指向</div><div class="line">	fn1.call(&#123;x:100&#125;,<span class="string">'world'</span>,<span class="string">'25'</span>);//this===&#123;x:100&#125;</div><div class="line"></div><div class="line">	//apply改变this指向</div><div class="line">	fn1.apply(&#123;x:200&#125;,[<span class="string">'world'</span>,<span class="string">'25'</span>]);//this===&#123;x:200&#125;</div><div class="line"></div><div class="line">	//<span class="built_in">bind</span>改变this指向  ps：.<span class="built_in">bind</span>必须是函数表达式</div><div class="line">	var fn2 =<span class="keyword">function</span> (name)&#123;</div><div class="line">		console.log(name);</div><div class="line">		console.log(this);</div><div class="line">	&#125;.<span class="built_in">bind</span>(&#123;y:300&#125;);</div><div class="line">	fn2(<span class="string">'wuyq'</span>);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/30/react生命周期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1373,126 +1493,6 @@ ps:
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/18/article-title/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="永泉。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一些坑,一些收获。">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/05/18/article-title/" itemprop="url">my first bog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-18T17:59:55+08:00">
-                2016-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="搭建hexo遇到的一些坑"><a href="#搭建hexo遇到的一些坑" class="headerlink" title="搭建hexo遇到的一些坑"></a>搭建hexo遇到的一些坑</h2><p>   我的第一篇blog,只想写下搭建hexo博客遇到的一些坑<br>总的来说，搭建一个hexo博客对程序员来说是一件不难的事情，特别是有git和github经验的。但有些地方有疏忽的话也很容易出问题。一下是我搭建过程中遇到的几个坑：</p>
-<ul>
-<li><p>配置文件(_config.yml)的格式问题<br>  与常用的json格式不一样，这里的配置文件在冒号后面需要空一个格！！</p>
-</li>
-<li><p>repository的命名格式问题<br>  repository的名字必须是username.github.io,其中username就是必须是你的github的用户名,其它的不行。关于github pages 的更多内容可用看这里 <a href="https://pages.github.com/" target="_blank" rel="external">github pages</a></p>
-</li>
-</ul>
-<hr>
-<p>嗯…第一次用md,还不是很熟练，就不引入截图了….哈哈哈（我讲的这些貌似很难看的明白啊）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1542,7 +1542,7 @@ ps:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1555,7 +1555,7 @@ ps:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -1597,7 +1597,7 @@ ps:
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
