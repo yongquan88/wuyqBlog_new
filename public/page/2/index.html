@@ -257,6 +257,143 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/30/PM2体验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/05/30/PM2体验/" itemprop="url">PM2体验</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-30T11:31:41+08:00">
+                2016-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前段时间折腾了一下Amazon EC2 的免费服务,然后想着顺便把之前的node联系项目部署上去,我是通过ssh连接服务去启动我的服务，可是当我断开ssh连接的时候服务就关掉了，郁闷。<br>后台经老大介绍 pm2 这个工具，顺便也体验了下pm2 cluster….</p>
+<h3 id="PM2介绍"><a href="#PM2介绍" class="headerlink" title="PM2介绍"></a>PM2介绍</h3><p>pm2 是一个带有负载均衡功能的node应用的进程管理器。当你要把你的独立代码利用全部的服务器上所有cpu，并保证进程永远活在，0秒加载，pm2是完美的。</p>
+<h4 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性:"></a>主要特性:</h4><ul>
+<li>内建负载均衡(使用Node cluster 集群模块)</li>
+<li>后台运行</li>
+<li>0秒停机重载 ps：我理解的意思是维护升级的时候不需要停机</li>
+<li>具有Ubuntu和CentOS 的启动脚本</li>
+<li>停止不稳定的进程（避免无限循环）</li>
+<li>控制台检测</li>
+<li>提供 HTTP API</li>
+<li>远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 )</li>
+</ul>
+<h3 id="PM2安装"><a href="#PM2安装" class="headerlink" title="PM2安装"></a>PM2安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g pm2</div></pre></td></tr></table></figure>
+<h3 id="PM2的使用"><a href="#PM2的使用" class="headerlink" title="PM2的使用"></a>PM2的使用</h3><ul>
+<li>pm2 start app.js -i 4 #后台运行pm2，启动4个app.js的进程（具体的进程会依赖于cpu的核心数目，也可以传’max’或者 ‘0’参数，系统会根据cpu的核数来启动最多的进程）</li>
+<li>pm2 start app.js –name appname #命名进程</li>
+<li>pm2 list #显示所有进程状态</li>
+<li>pm2 monit #监视所有进程</li>
+<li>pm2 logs #显示所有进程日志</li>
+<li>pm2 stop all #停止所有进程</li>
+<li>pm2 stop id/name #停止某个进程</li>
+<li>pm2 restart all #重启所有进程</li>
+<li>pm2 delete id/name #杀死特定的进程</li>
+<li>pm2 delete all #杀死全部进程</li>
+</ul>
+<p>更多更详细的内容请到官网 <a href="http://pm2.keymetrics.io/docs/usage/quick-start/" target="_blank" rel="external">PM2</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/18/article-title/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -537,7 +674,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -550,7 +687,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

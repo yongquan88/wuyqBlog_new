@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="两个基本原则* this要在执行的时候才能确定值，定义时无法确定 * 谁调用指向谁，没有谁调用就指向window  eg： 123456789101112//var name=&apos;i am window name&apos;;//window下的namevar a=&amp;#123;	name:&apos;wuyq&apos;,	fn:function()&amp;#123;		console.log(this.name);	&amp;#125;&amp;#">
+<meta name="description" content="两个基本原则* this要在执行的时候才能确定值，定义时无法确定 * 谁调用指向谁，没有谁调用就指向window 123456789101112//var name=&apos;i am window name&apos;;//window下的namevar a=&amp;#123;	name:&apos;wuyq&apos;,	fn:function()&amp;#123;		console.log(this.name);	&amp;#125;&amp;#125;a">
 <meta name="keywords" content="this apply call bind">
 <meta property="og:type" content="article">
 <meta property="og:title" content="this指向分析">
 <meta property="og:url" content="http://yoursite.com/2018/01/16/this指向分析/index.html">
 <meta property="og:site_name" content="一些坑,一些收获。">
-<meta property="og:description" content="两个基本原则* this要在执行的时候才能确定值，定义时无法确定 * 谁调用指向谁，没有谁调用就指向window  eg： 123456789101112//var name=&apos;i am window name&apos;;//window下的namevar a=&amp;#123;	name:&apos;wuyq&apos;,	fn:function()&amp;#123;		console.log(this.name);	&amp;#125;&amp;#">
-<meta property="og:updated_time" content="2018-01-16T07:36:24.000Z">
+<meta property="og:description" content="两个基本原则* this要在执行的时候才能确定值，定义时无法确定 * 谁调用指向谁，没有谁调用就指向window 123456789101112//var name=&apos;i am window name&apos;;//window下的namevar a=&amp;#123;	name:&apos;wuyq&apos;,	fn:function()&amp;#123;		console.log(this.name);	&amp;#125;&amp;#125;a">
+<meta property="og:updated_time" content="2018-01-16T07:39:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this指向分析">
-<meta name="twitter:description" content="两个基本原则* this要在执行的时候才能确定值，定义时无法确定 * 谁调用指向谁，没有谁调用就指向window  eg： 123456789101112//var name=&apos;i am window name&apos;;//window下的namevar a=&amp;#123;	name:&apos;wuyq&apos;,	fn:function()&amp;#123;		console.log(this.name);	&amp;#125;&amp;#">
+<meta name="twitter:description" content="两个基本原则* this要在执行的时候才能确定值，定义时无法确定 * 谁调用指向谁，没有谁调用就指向window 123456789101112//var name=&apos;i am window name&apos;;//window下的namevar a=&amp;#123;	name:&apos;wuyq&apos;,	fn:function()&amp;#123;		console.log(this.name);	&amp;#125;&amp;#125;a">
 
 
 
@@ -323,8 +323,6 @@
       
         <h3 id="两个基本原则"><a href="#两个基本原则" class="headerlink" title="两个基本原则"></a>两个基本原则</h3><pre><code>* this要在执行的时候才能确定值，定义时无法确定
 * 谁调用指向谁，没有谁调用就指向window
-
-eg：
 </code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//var name=<span class="string">'i am window name'</span>;//window下的name</div><div class="line">var a=&#123;</div><div class="line">	name:<span class="string">'wuyq'</span>,</div><div class="line">	fn:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.fn(); //this===a</div><div class="line">a.fn.call(&#123;name:<span class="string">'hello world'</span>&#125;);  //this===&#123;name:<span class="string">'hello world'</span>&#125;</div><div class="line">var fn1=a.fn;</div><div class="line">fn1(); //this===window</div></pre></td></tr></table></figure>
 <h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><pre><code>*1.作为构造函数执行 this.name...
 *2.作为对象属性执行 f.callname()
@@ -381,6 +379,10 @@ eg：
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/27/Javascript设计模式之发布-订阅模式/" rel="prev" title="Javascript设计模式之发布-订阅模式 ">
+                Javascript设计模式之发布-订阅模式  <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -452,7 +454,7 @@ eg：
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -465,7 +467,7 @@ eg：
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

@@ -257,6 +257,125 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/Javascript设计模式之发布-订阅模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/27/Javascript设计模式之发布-订阅模式/" itemprop="url">Javascript设计模式之发布-订阅模式 </a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-27T16:42:54+08:00">
+                2018-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>发布-订阅模式又叫观察者模式,他定义了一种一对多的依赖关系,即当一个对象的状态发生改变的时候,所有依赖他的对象都会被得到通知</p>
+<h4 id="直接上代码"><a href="#直接上代码" class="headerlink" title="直接上代码"></a>直接上代码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">var createEventSys=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    <span class="built_in">return</span> &#123;</div><div class="line">        //通过on接口监听事件eventName</div><div class="line">        //如果事件eventName被触发，则执行callback回调函数</div><div class="line">        on:<span class="keyword">function</span>(eventName,callback)&#123;</div><div class="line">            //如果Event对象没有handles属性，则给Event对象定义属性handles，初始值为&#123;&#125;</div><div class="line">            //handles属性是用来存储事件和回调函数的（即存储订阅的时间和触发事件后执行的相应函数方法）</div><div class="line">            <span class="keyword">if</span>(!this.handles)&#123;</div><div class="line">                this.handles=&#123;&#125;;</div><div class="line">            &#125;</div><div class="line">            //如果handles中不存在时间eventName，则将事件存储在handles中，同时初始化改事件对应的回调函数集合</div><div class="line">            <span class="keyword">if</span>(!this.handles[eventName])&#123;</div><div class="line">                this.handles[eventName]=[];</div><div class="line">            &#125;</div><div class="line">            //往handles中的eventName对应的回调函数集合push回调函数callback</div><div class="line">            this.handles[eventName].push(callback);</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        //触发时间 eventName</div><div class="line">        emit:<span class="keyword">function</span>(eventName)&#123;</div><div class="line">            //如果事件eventName有订阅者，则依次执行事件eventName的订阅者相应的回调方法</div><div class="line">            <span class="keyword">if</span>(this.handles[arguments[0]])&#123;</div><div class="line">                <span class="keyword">for</span>(var i=0;i&lt;this.handles[arguments[0]].length;i++)&#123;</div><div class="line">                    this.handles[arguments[0]][i](arguments[1]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        //移除事件 eventName</div><div class="line">        remove:<span class="keyword">function</span>(eventName,fn)&#123;</div><div class="line">            //判断时间eventName是否存在fn这个观察者，如果有，则移除事件eventName的fn观察者</div><div class="line">            <span class="keyword">if</span> (this.handles[arguments[0]]) &#123;</div><div class="line">                <span class="keyword">for</span>(var i=0;i&lt;this.handles[arguments[0]].length;i++)&#123;</div><div class="line">                    var _fn=this.handles[arguments[0]][i];</div><div class="line">                    <span class="keyword">if</span>(_fn===fn)&#123;</div><div class="line">                        this.handles[arguments[0]].splice(i,1);</div><div class="line">                        <span class="built_in">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">var Event=createEventSys();</div><div class="line"></div><div class="line">Event.on(<span class="string">'test'</span>,<span class="keyword">function</span>(result)&#123;</div><div class="line">    console.log(result);</div><div class="line">&#125;)</div><div class="line">Event.on(<span class="string">'test'</span>,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    console.log(<span class="string">'test'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">Event.on(<span class="string">'test1'</span>,<span class="keyword">function</span>(result)&#123;</div><div class="line">    console.log(`test1:<span class="variable">$&#123;result&#125;</span>`)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">Event.emit(<span class="string">'test'</span>,<span class="string">'hello world~!'</span>);</div><div class="line">Event.emit(<span class="string">'test1'</span>,<span class="string">'welcome to GZ!'</span>);</div><div class="line"></div><div class="line">//ps 想要remove订阅者，就不能用匿名函数</div><div class="line">var testRemove=<span class="keyword">function</span>(result)&#123;</div><div class="line">    console.log(<span class="string">'test remove'</span>+result);</div><div class="line">&#125;</div><div class="line">Event.on(<span class="string">'test'</span>,testRemove);</div><div class="line">Event.emit(<span class="string">'test'</span>,<span class="string">'haha'</span>);</div><div class="line">Event.remove(<span class="string">'test'</span>,testRemove);</div><div class="line">Event.emit(<span class="string">'test'</span>,<span class="string">'haha'</span>);</div><div class="line"></div><div class="line">//对象person1和对象person2拓展复用自定义系统</div><div class="line">var person1=&#123;&#125;;</div><div class="line">var person2=&#123;&#125;;</div><div class="line">Object.assign(person1,createEventSys());</div><div class="line">Object.assign(person2,createEventSys());</div><div class="line"></div><div class="line">person1.on(<span class="string">'call1'</span>,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    console.log(<span class="string">'person1'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">person2.on(<span class="string">'call2'</span>,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    console.log(<span class="string">'person2'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">person1.emit(<span class="string">'call1'</span>);// 输出 person1</div><div class="line">person1.emit(<span class="string">'call2'</span>);// 没有输出</div><div class="line">person2.emit(<span class="string">'call1'</span>);// 没有输出</div><div class="line">person2.emit(<span class="string">'call2'</span>);// 输出 person2</div></pre></td></tr></table></figure>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><pre><code>1.发布-订阅的优势很明显，做到了时间上的解耦和对象之间的解耦，
+从架构上看，MVC，MVVM都少不了发布-订阅的参与;
+2.发布-订阅同时也是有缺点存在的，创建订阅者本身要消耗一定的时间和内存，
+而且当你订阅一个消息以后，可能此消息最后都未发生，但是这个订阅者会始终存在于内存中。
+如果程序中大量使用发布-订阅的话，也会使得程序跟踪bug变得困难。
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/this指向分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -327,8 +446,6 @@
           
             <h3 id="两个基本原则"><a href="#两个基本原则" class="headerlink" title="两个基本原则"></a>两个基本原则</h3><pre><code>* this要在执行的时候才能确定值，定义时无法确定
 * 谁调用指向谁，没有谁调用就指向window
-
-eg：
 </code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//var name=<span class="string">'i am window name'</span>;//window下的name</div><div class="line">var a=&#123;</div><div class="line">	name:<span class="string">'wuyq'</span>,</div><div class="line">	fn:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.fn(); //this===a</div><div class="line">a.fn.call(&#123;name:<span class="string">'hello world'</span>&#125;);  //this===&#123;name:<span class="string">'hello world'</span>&#125;</div><div class="line">var fn1=a.fn;</div><div class="line">fn1(); //this===window</div></pre></td></tr></table></figure>
 <h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><pre><code>*1.作为构造函数执行 this.name...
 *2.作为对象属性执行 f.callname()
@@ -1356,143 +1473,6 @@ ps:
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/30/PM2体验/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="永泉。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一些坑,一些收获。">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/05/30/PM2体验/" itemprop="url">PM2体验</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-30T11:31:41+08:00">
-                2016-05-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前段时间折腾了一下Amazon EC2 的免费服务,然后想着顺便把之前的node联系项目部署上去,我是通过ssh连接服务去启动我的服务，可是当我断开ssh连接的时候服务就关掉了，郁闷。<br>后台经老大介绍 pm2 这个工具，顺便也体验了下pm2 cluster….</p>
-<h3 id="PM2介绍"><a href="#PM2介绍" class="headerlink" title="PM2介绍"></a>PM2介绍</h3><p>pm2 是一个带有负载均衡功能的node应用的进程管理器。当你要把你的独立代码利用全部的服务器上所有cpu，并保证进程永远活在，0秒加载，pm2是完美的。</p>
-<h4 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性:"></a>主要特性:</h4><ul>
-<li>内建负载均衡(使用Node cluster 集群模块)</li>
-<li>后台运行</li>
-<li>0秒停机重载 ps：我理解的意思是维护升级的时候不需要停机</li>
-<li>具有Ubuntu和CentOS 的启动脚本</li>
-<li>停止不稳定的进程（避免无限循环）</li>
-<li>控制台检测</li>
-<li>提供 HTTP API</li>
-<li>远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 )</li>
-</ul>
-<h3 id="PM2安装"><a href="#PM2安装" class="headerlink" title="PM2安装"></a>PM2安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g pm2</div></pre></td></tr></table></figure>
-<h3 id="PM2的使用"><a href="#PM2的使用" class="headerlink" title="PM2的使用"></a>PM2的使用</h3><ul>
-<li>pm2 start app.js -i 4 #后台运行pm2，启动4个app.js的进程（具体的进程会依赖于cpu的核心数目，也可以传’max’或者 ‘0’参数，系统会根据cpu的核数来启动最多的进程）</li>
-<li>pm2 start app.js –name appname #命名进程</li>
-<li>pm2 list #显示所有进程状态</li>
-<li>pm2 monit #监视所有进程</li>
-<li>pm2 logs #显示所有进程日志</li>
-<li>pm2 stop all #停止所有进程</li>
-<li>pm2 stop id/name #停止某个进程</li>
-<li>pm2 restart all #重启所有进程</li>
-<li>pm2 delete id/name #杀死特定的进程</li>
-<li>pm2 delete all #杀死全部进程</li>
-</ul>
-<p>更多更详细的内容请到官网 <a href="http://pm2.keymetrics.io/docs/usage/quick-start/" target="_blank" rel="external">PM2</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1542,7 +1522,7 @@ ps:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1555,7 +1535,7 @@ ps:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
