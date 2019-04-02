@@ -267,6 +267,239 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/一个超级简单的redux例子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/15/一个超级简单的redux例子/" itemprop="url">一个超级简单的redux例子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-15T20:05:22+08:00">
+                2017-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂，
+这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。
+</code></pre><h4 id="store的几个api"><a href="#store的几个api" class="headerlink" title="store的几个api"></a>store的几个api</h4><pre><code>* dispatch:用于action的分发，改变store里面的state
+* subscribe：注册listener，store里面state发生改变后，执行该listener
+* getState：读取store里面的state
+* replaceReducer：替换reducer，改变state修改的逻辑
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//引入store的创建方法</div><div class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</div><div class="line"></div><div class="line">//定义reducer,即state的改变逻辑</div><div class="line"><span class="keyword">function</span> counter(state=0,action)&#123;</div><div class="line">	<span class="built_in">let</span> &#123;<span class="built_in">type</span>&#125; = action;</div><div class="line"></div><div class="line">	switch(<span class="built_in">type</span>)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'INCREMENT'</span>:</div><div class="line">			<span class="built_in">return</span> ++state;</div><div class="line">		default:</div><div class="line">			<span class="built_in">return</span> state;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建store</div><div class="line"><span class="built_in">let</span> store = createStore(counter);</div><div class="line"></div><div class="line">$(document).click(ev=&gt;&#123;</div><div class="line">	//定义action</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">IncrementAction</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			<span class="built_in">type</span>:<span class="string">'INCREMENT'</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	//分发改action</div><div class="line">	store.dispatch(IncrementAction());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//注册listener，当store里面的state改变的时候会执行</div><div class="line">store.subscribe(()=&gt;&#123;</div><div class="line">	//获取改变后的state</div><div class="line">	<span class="built_in">let</span> state=state.getState();</div><div class="line">	console.log(state);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/02/js获取url的参数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/02/js获取url的参数/" itemprop="url">js获取url的参数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-02T16:01:50+08:00">
+                2016-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在开发中经常会遇到从url中获取参数的需求，解决的方法可以有很种，有些框架中已经封装了对应的方法给我们直接用就可以，比如angularjs中$location模块的search()方法就直接返回url中包含参数的对象，方便好用！</p>
+<p>可是如果直接用原生js去获取呢？曾经我的做法是从url中找到第一个’?’后面的那部分，然后在切割组成json对象，但总感觉这种方法不够好，就是无法保证第一个’？’后面的那些就是我想要的参数字符串。</p>
+<p>知道今天才发现a标签中有个属性search就给我们提高了参数部分的字符串了</p>
+<h4 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var arr=urlParse(<span class="string">'www.baidu.com?a=1&amp;b=2'</span>);</div><div class="line">console.log(arr);//&#123;<span class="string">"a"</span>:1,<span class="string">"b"</span>:2&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> urlParse(url)&#123;</div><div class="line">    var query=&#123;&#125;;</div><div class="line">    var oA=document.createElement(<span class="string">'a'</span>);</div><div class="line">    oA.href=url;</div><div class="line">    var arrParms=oA.search.slice(1).split(<span class="string">'&amp;'</span>);</div><div class="line">    <span class="keyword">for</span>(var i=0;i&lt;arrParms.length;i++)&#123;</div><div class="line">        var temArr=arrParms[i].split(<span class="string">'='</span>);</div><div class="line">        query[decodeURIComponent(temArr[0])]=(decodeURIComponent(temArr[1]) || <span class="string">''</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> query;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="关键的地方"><a href="#关键的地方" class="headerlink" title="关键的地方"></a>关键的地方</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arrParms=oA.search.slice(1).split(<span class="string">'&amp;'</span>);</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/30/PM2体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -684,7 +917,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -697,7 +930,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -739,7 +972,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

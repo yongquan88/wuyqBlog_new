@@ -267,6 +267,243 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/基于ES5-ES6实现数据双向绑定/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/基于ES5-ES6实现数据双向绑定/" itemprop="url">基于ES5/ES6实现数据双向绑定</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T16:22:19+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先理解双向数据绑定与单向数据绑定的含义和区别：<br><em>双向绑定：视图（View）的变化能实时让数据模型（Model）发生变化，而数据的变化也能实时更新到视图层。
+</em>单向数据绑定：只有从数据模型到视图这一方向的改变关系。</p>
+<p>实现双向数据绑定有两种方式 ES5 的 defineProperty 和 ES6 的 Proxy。</p>
+<h3 id="ES5-的-defineProperty-实现，直接上代码"><a href="#ES5-的-defineProperty-实现，直接上代码" class="headerlink" title="ES5 的 defineProperty 实现，直接上代码"></a>ES5 的 defineProperty 实现，直接上代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line">  &lt;title&gt;Document&lt;/title&gt;</div><div class="line">  &lt;script&gt;</div><div class="line">    var obj=&#123;title:<span class="string">''</span>&#125;;</div><div class="line">    //对obj的title进行拦截处理</div><div class="line">    Object.defineProperty(obj,<span class="string">'title'</span>,&#123;</div><div class="line">      get:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">        <span class="built_in">return</span> title;</div><div class="line">      &#125;,</div><div class="line">      <span class="built_in">set</span>:<span class="keyword">function</span>(newValue)&#123;</div><div class="line">        title=newValue;</div><div class="line">        document.querySelector(<span class="string">'#value'</span>).innerHTML = newValue // 更新视图层</div><div class="line">        document.querySelector(<span class="string">'input'</span>).value = newValue // 数据模型改变</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">function</span> onKeyUp(event) &#123;</div><div class="line">      obj.value = event.target.value</div><div class="line">    &#125;</div><div class="line">  &lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;p&gt;</div><div class="line">    值是：&lt;span id=<span class="string">"value"</span>&gt;&lt;/span&gt;</div><div class="line">  &lt;/p&gt;</div><div class="line">  &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> onkeyup=<span class="string">"onKeyUp(event)"</span>&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="ES6-的-Proxy"><a href="#ES6-的-Proxy" class="headerlink" title="ES6 的 Proxy"></a>ES6 的 Proxy</h3><p>随着 vue3.0 放弃了支持 IE 浏览器，而且 Proxy 兼容性越来越好，能支持 13 中劫持操作。<br>因此 vue3.0 选择使用 Proxy 来实现双向数据绑定，而不再使用 Object.defineProperty。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line">&lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  var obj = new Proxy(&#123;&#125;,&#123;</div><div class="line">    get:<span class="keyword">function</span>(target,key,receiver)&#123;</div><div class="line">      <span class="built_in">return</span> Reflect.get(target,key,receiver);</div><div class="line">    &#125;,</div><div class="line">    <span class="built_in">set</span>:<span class="keyword">function</span>(target,key,value,receiver)&#123;</div><div class="line">      <span class="keyword">if</span>(key===<span class="string">'title'</span>)&#123;</div><div class="line">        document.querySelector(<span class="string">'#value'</span>).innerHTML = value</div><div class="line">        document.querySelector(<span class="string">'input'</span>).value = value</div><div class="line">      &#125;</div><div class="line">      <span class="built_in">return</span> Reflect.set(target,key,value,receiver);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line"></div><div class="line">  <span class="keyword">function</span> onKeyUp(event) &#123;</div><div class="line">    obj.title = event.target.value</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;p&gt;</div><div class="line">  值是：&lt;span id=<span class="string">"value"</span>&gt;&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> onkeyup=<span class="string">"onKeyUp(event)"</span>&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/深拷贝函数的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="永泉。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一些坑,一些收获。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/深拷贝函数的实现/" itemprop="url">深拷贝函数的实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T14:46:25+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="实现一个对象的深拷贝函数，需要考虑对象的元素类型以及对应的解决方案："><a href="#实现一个对象的深拷贝函数，需要考虑对象的元素类型以及对应的解决方案：" class="headerlink" title="实现一个对象的深拷贝函数，需要考虑对象的元素类型以及对应的解决方案："></a>实现一个对象的深拷贝函数，需要考虑对象的元素类型以及对应的解决方案：</h4><ul>
+<li>基础类型：这种最简单，直接赋值即可</li>
+<li>对象类型：对应递归拷贝函数</li>
+<li>数组类型：这种最难，因为数组中的元素可能是基础类型、对象、数组，因此要专门做一个函数来处理数组的拷贝</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">  * 数组的深拷贝函数</div><div class="line">  * @param &#123;Array&#125; src</div><div class="line">  * @param &#123;Array&#125; target</div><div class="line">  */</div><div class="line">  <span class="keyword">function</span> cloneArr(src,target)&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">let</span> item of src)&#123;</div><div class="line">      <span class="keyword">if</span>(Array.isArray(item))&#123;</div><div class="line">        target.push(cloneArr(item,[]));</div><div class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(typeof item === <span class="string">'object'</span>)&#123;</div><div class="line">        target.push(deepClone(item,&#123;&#125;));</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        target.push(item);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> target;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  /**</div><div class="line">    * 对象的深拷贝实现</div><div class="line">    * @param &#123;Object&#125; src</div><div class="line">    * @param &#123;Object&#125; target</div><div class="line">    * @<span class="built_in">return</span> &#123;Object&#125;</div><div class="line">    */</div><div class="line">  <span class="keyword">function</span> deepClone(src,target)&#123;</div><div class="line">    const keys = Reflect.ownKeys(src);</div><div class="line">    <span class="built_in">let</span> value = null;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">let</span> key of keys)&#123;</div><div class="line">      value = src[key];</div><div class="line">      <span class="keyword">if</span>(Array.isArray(value))&#123;</div><div class="line">        target[key]=cloneArr(value,[]);</div><div class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(typeof value === <span class="string">'object'</span>)&#123;</div><div class="line">        // 如果是对象而且不是数组, 那么递归调用深拷贝</div><div class="line">        target[key]=deepClone(value,&#123;&#125;);</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        target[key]=value;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> target;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>测试用例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">// 这个对象a是一个囊括以上所有情况的对象</div><div class="line"><span class="built_in">let</span> a = &#123;</div><div class="line">  age: 1,</div><div class="line">  <span class="built_in">jobs</span>: &#123;</div><div class="line">    first: <span class="string">"FE"</span></div><div class="line">  &#125;,</div><div class="line">  schools: [</div><div class="line">    &#123;</div><div class="line">      name: <span class="string">'shenda'</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      name: <span class="string">'shiyan'</span></div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  arr: [</div><div class="line">    [</div><div class="line">      &#123;</div><div class="line">        value: <span class="string">'1'</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    [</div><div class="line">      &#123;</div><div class="line">        value: <span class="string">'2'</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">let</span> b = &#123;&#125;</div><div class="line">deepClone(a, b)</div><div class="line"></div><div class="line">a.jobs.first = <span class="string">'native'</span></div><div class="line">a.schools[0].name = <span class="string">'SZU'</span></div><div class="line">a.arr[0][0].value = <span class="string">'100'</span></div><div class="line"></div><div class="line">console.log(a.jobs.first, b.jobs.first) // output: native FE</div><div class="line">console.log(a.schools[0], b.schools[0]) // output: &#123; name: <span class="string">'SZU'</span> &#125; &#123; name: <span class="string">'shenda'</span> &#125;</div><div class="line">console.log(a.arr[0][0].value, b.arr[0][0].value) // output: 100 1</div><div class="line">console.log(Array.isArray(a.arr[0])) // output: <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>ps:缺点，如果被拷贝对象的属性值是 null，则会报错，也就是说这种方法无法处理值为 null 的情况</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/Javascript设计模式之发布-订阅模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1250,239 +1487,6 @@ ps:
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/一个超级简单的redux例子/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="永泉。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一些坑,一些收获。">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/15/一个超级简单的redux例子/" itemprop="url">一个超级简单的redux例子</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-15T20:05:22+08:00">
-                2017-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <pre><code>随着js单页面应用开发日趋复杂，js需要管理的state（状态）也越来越复杂，
-这时候一般都会引用redux来做state的管理。下面用一个简单的例子来理解redux的api。
-</code></pre><h4 id="store的几个api"><a href="#store的几个api" class="headerlink" title="store的几个api"></a>store的几个api</h4><pre><code>* dispatch:用于action的分发，改变store里面的state
-* subscribe：注册listener，store里面state发生改变后，执行该listener
-* getState：读取store里面的state
-* replaceReducer：替换reducer，改变state修改的逻辑
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//引入store的创建方法</div><div class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</div><div class="line"></div><div class="line">//定义reducer,即state的改变逻辑</div><div class="line"><span class="keyword">function</span> counter(state=0,action)&#123;</div><div class="line">	<span class="built_in">let</span> &#123;<span class="built_in">type</span>&#125; = action;</div><div class="line"></div><div class="line">	switch(<span class="built_in">type</span>)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'INCREMENT'</span>:</div><div class="line">			<span class="built_in">return</span> ++state;</div><div class="line">		default:</div><div class="line">			<span class="built_in">return</span> state;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建store</div><div class="line"><span class="built_in">let</span> store = createStore(counter);</div><div class="line"></div><div class="line">$(document).click(ev=&gt;&#123;</div><div class="line">	//定义action</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">IncrementAction</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			<span class="built_in">type</span>:<span class="string">'INCREMENT'</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	//分发改action</div><div class="line">	store.dispatch(IncrementAction());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//注册listener，当store里面的state改变的时候会执行</div><div class="line">store.subscribe(()=&gt;&#123;</div><div class="line">	//获取改变后的state</div><div class="line">	<span class="built_in">let</span> state=state.getState();</div><div class="line">	console.log(state);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/02/js获取url的参数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="永泉。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一些坑,一些收获。">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/02/js获取url的参数/" itemprop="url">js获取url的参数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-02T16:01:50+08:00">
-                2016-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在开发中经常会遇到从url中获取参数的需求，解决的方法可以有很种，有些框架中已经封装了对应的方法给我们直接用就可以，比如angularjs中$location模块的search()方法就直接返回url中包含参数的对象，方便好用！</p>
-<p>可是如果直接用原生js去获取呢？曾经我的做法是从url中找到第一个’?’后面的那部分，然后在切割组成json对象，但总感觉这种方法不够好，就是无法保证第一个’？’后面的那些就是我想要的参数字符串。</p>
-<p>知道今天才发现a标签中有个属性search就给我们提高了参数部分的字符串了</p>
-<h4 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var arr=urlParse(<span class="string">'www.baidu.com?a=1&amp;b=2'</span>);</div><div class="line">console.log(arr);//&#123;<span class="string">"a"</span>:1,<span class="string">"b"</span>:2&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> urlParse(url)&#123;</div><div class="line">    var query=&#123;&#125;;</div><div class="line">    var oA=document.createElement(<span class="string">'a'</span>);</div><div class="line">    oA.href=url;</div><div class="line">    var arrParms=oA.search.slice(1).split(<span class="string">'&amp;'</span>);</div><div class="line">    <span class="keyword">for</span>(var i=0;i&lt;arrParms.length;i++)&#123;</div><div class="line">        var temArr=arrParms[i].split(<span class="string">'='</span>);</div><div class="line">        query[decodeURIComponent(temArr[0])]=(decodeURIComponent(temArr[1]) || <span class="string">''</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> query;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h4 id="关键的地方"><a href="#关键的地方" class="headerlink" title="关键的地方"></a>关键的地方</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arrParms=oA.search.slice(1).split(<span class="string">'&amp;'</span>);</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1532,7 +1536,7 @@ ps:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1545,7 +1549,7 @@ ps:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -1587,7 +1591,7 @@ ps:
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
